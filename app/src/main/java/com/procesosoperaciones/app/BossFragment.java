@@ -28,9 +28,7 @@ public class BossFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        if(getArguments() != null){
-
-        }
+        if(getArguments() != null){}
     }
 
     @Override
@@ -46,11 +44,7 @@ public class BossFragment extends Fragment {
                 Toast.makeText(getActivity(), currentBoss.getName(), Toast.LENGTH_LONG).show();
             }
         });
-
-        //setHasOptionsMenu(true);
         return root;
     }
-
-
 
 }

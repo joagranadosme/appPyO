@@ -24,7 +24,9 @@
         <activity
             android:name=".Instructions"
             android:label="..."></activity>
-        <activity android:name=".BossActivity"></activity>
+        <activity
+            android:name=".BossActivity"
+            android:label="Selecciona tu gefe"></activity>
     </application>
 
 </manifest>
