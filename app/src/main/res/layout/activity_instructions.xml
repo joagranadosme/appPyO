@@ -1,49 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="10"
     tools:context="com.procesosoperaciones.app.Instructions">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="horizontal">
+        android:layout_weight="1">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="9">
+        <com.bluejamesbond.text.DocumentView xmlns:ext="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/contentDocumentView"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="15dp"
+            ext:documentView_textAlignment="justified"
+            ext:documentView_textColor="@android:color/black"
+            ext:documentView_textFormat="formatted"
+            ext:documentView_textSize="16dp"
+            ext:documentView_textTypefacePath="font/Calibri.ttf"
+            ext:documentView_wordSpacingMultiplier="5.0" />
 
-            <TextView
-                android:id="@+id/contentTextView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="10dp"
-                android:textAppearance="@style/TextAppearance.AppCompat.SearchResult.Subtitle" />
 
+    </ScrollView>
 
-        </ScrollView>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/nextActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="right"
+        android:layout_margin="5dp"
+        android:background="@drawable/button_shape"
+        android:clickable="true"
+        android:onClick="sendClick"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="normal"
+        app:srcCompat="@android:drawable/ic_menu_send" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="9"
-        android:orientation="horizontal">
-
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            android:onClick="nextClick"
-            app:srcCompat="@android:drawable/ic_menu_send" />
-    </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

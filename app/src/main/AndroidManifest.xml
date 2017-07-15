@@ -20,13 +20,14 @@
         </activity>
         <activity
             android:name=".GeneralInstructions"
-            android:label="Instrucciones generales"></activity>
+            android:label="Instrucciones generales" />
         <activity
             android:name=".Instructions"
-            android:label="..."></activity>
+            android:label="..." />
         <activity
             android:name=".BossActivity"
-            android:label="Selecciona tu gefe"></activity>
+            android:label="Selecciona tu gefe" />
+        <activity android:name=".GoalActivity"></activity>
     </application>
 
 </manifest>
