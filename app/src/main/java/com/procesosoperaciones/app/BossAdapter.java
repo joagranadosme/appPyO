@@ -47,7 +47,6 @@ public class BossAdapter extends ArrayAdapter<Boss>{
         return convertView;
     }
 
-
     static class ViewHolder{
         ImageView avatar;
         TextView name;

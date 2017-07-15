@@ -14,11 +14,11 @@ public class GoalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goal);
 
-        BossFragment bossFragment = (BossFragment) getSupportFragmentManager().findFragmentById(R.id.boss_container);
+        GoalFragment goalFragment = (GoalFragment) getSupportFragmentManager().findFragmentById(R.id.goal_container);
 
-        if(bossFragment == null){
-            bossFragment = BossFragment.newInstance();
-            getSupportFragmentManager().beginTransaction().add(R.id.boss_container, bossFragment).commit();
+        if(goalFragment == null){
+            goalFragment = GoalFragment.newInstance();
+            getSupportFragmentManager().beginTransaction().add(R.id.goal_container, goalFragment).commit();
         }
     }
 

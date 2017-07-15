@@ -13,7 +13,7 @@
         android:weightSum="10">
 
         <include
-            layout="@layout/content_boss"
+            layout="@layout/content_goal"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1" />
