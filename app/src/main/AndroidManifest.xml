@@ -20,20 +20,17 @@
         </activity>
         <activity
             android:name=".GeneralInstructions"
-            android:label="Instrucciones generales">
-        </activity>
+            android:label="Instrucciones generales"></activity>
         <activity
             android:name=".Instructions"
-            android:label="...">
-        </activity>
+            android:label="..."></activity>
         <activity
             android:name=".BossActivity"
-            android:label="Selecciona tu jefe">
-        </activity>
+            android:label="Selecciona tu jefe"></activity>
         <activity
             android:name=".GoalActivity"
-            android:label="Crea tus objetivos">
-        </activity>
+            android:label="Crea tus objetivos"></activity>
+        <activity android:name=".FormActivity"></activity>
     </application>
 
 </manifest>

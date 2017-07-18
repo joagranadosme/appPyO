@@ -29,4 +29,14 @@ public class GoalRepository {
         return new ArrayList<>(goals.values());
     }
 
+    public List<Goal> add(){
+        saveGoal(new Goal());
+        return getGoals();
+    }
+
+    public List<Goal> delete(Goal goal){
+        goals.remove(goal.getId());
+        return getGoals();
+    }
+
 }

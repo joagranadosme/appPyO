@@ -1,5 +1,6 @@
 package com.procesosoperaciones.app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 public class GoalFragment extends Fragment {
 
+    private Goal current;
     private ListView goalList;
     private GoalAdapter goalAdapter;
 
@@ -33,14 +35,35 @@ public class GoalFragment extends Fragment {
         goalList = (ListView) root.findViewById(R.id.goal_list);
         goalAdapter = new GoalAdapter(getActivity(), GoalRepository.getInstance().getGoals());
         goalList.setAdapter(goalAdapter);
+        goalList.setLongClickable(true);
+
         goalList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Goal currentGoal = goalAdapter.getItem(position);
-                Toast.makeText(getActivity(), position + "", Toast.LENGTH_SHORT).show();
+                current = goalAdapter.getItem(position);
+                Intent intent = new Intent(getContext(), FormActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        goalList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                current = goalAdapter.getItem(position);
+                goalAdapter.remove(current);
+                return true;
             }
         });
         return root;
+    }
+
+    public void sendClick(View view){
+        Toast.makeText(view.getContext(), "Send not supported.", Toast.LENGTH_SHORT).show();
+    }
+
+    public void addClick(View view){
+        goalAdapter.add(new Goal());
+        goalAdapter.notifyDataSetChanged();
     }
 
 }
