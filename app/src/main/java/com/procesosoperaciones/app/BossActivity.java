@@ -1,18 +1,25 @@
 package com.procesosoperaciones.app;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 public class BossActivity extends AppCompatActivity {
+
+    private BossFragment bossFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boss);
 
-        BossFragment bossFragment = (BossFragment) getSupportFragmentManager().findFragmentById(R.id.boss_container);
+        bossFragment = (BossFragment) getSupportFragmentManager().findFragmentById(R.id.boss_container);
 
         if(bossFragment == null){
             bossFragment = BossFragment.newInstance();
@@ -35,6 +42,17 @@ public class BossActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void sendClick(View view){
+        Boss boss = bossFragment.getBoss();
+        if(boss == null){
+            Toast.makeText(view.getContext(), "¡Selecciona tu jefe!", Toast.LENGTH_LONG).show();
+        }else {
+            //TODO: Save boss.
+            setResult(Activity.RESULT_OK);
+            finish();
         }
     }
 

@@ -1,5 +1,6 @@
 package com.procesosoperaciones.app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 import com.bluejamesbond.text.DocumentView;
 
 public class GeneralInstructions extends AppCompatActivity {
+
+    private static final int SELECT_BOSS = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +33,9 @@ public class GeneralInstructions extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
         //Item selected in menu.
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.back:
                 finish();
                 return true;
@@ -41,39 +44,46 @@ public class GeneralInstructions extends AppCompatActivity {
         }
     }
 
-    public void unoClick(View view){
+    public void unoClick(View view) {
         //Start new activity.
         Intent intent = new Intent(this, Instructions.class);
         intent.putExtra("id", 0);
-        startActivity(intent);
+        startActivityForResult(intent, SELECT_BOSS);
     }
 
-    public void dosClick(View view){
+    public void dosClick(View view) {
         //Start new activity.
         Intent intent = new Intent(this, Instructions.class);
         intent.putExtra("id", 1);
         startActivity(intent);
     }
 
-    public void tresClick(View view){
+    public void tresClick(View view) {
         //Start new activity.
         Intent intent = new Intent(this, Instructions.class);
         intent.putExtra("id", 2);
         startActivity(intent);
     }
 
-    public void cuatroClick(View view){
+    public void cuatroClick(View view) {
         //Start new activity.
         Intent intent = new Intent(this, Instructions.class);
         intent.putExtra("id", 3);
         startActivity(intent);
     }
 
-    public void cincoClick(View view){
+    public void cincoClick(View view) {
         //Start new activity.
         Intent intent = new Intent(this, Instructions.class);
         intent.putExtra("id", 4);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == SELECT_BOSS && resultCode == Activity.RESULT_OK) {
+            Toast.makeText(this, "¡Jefe seleecionado correctamente!", Toast.LENGTH_LONG).show();
+        }
     }
 
 }

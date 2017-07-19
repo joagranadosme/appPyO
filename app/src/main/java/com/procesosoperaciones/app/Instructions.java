@@ -1,5 +1,6 @@
 package com.procesosoperaciones.app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 import com.bluejamesbond.text.DocumentView;
 
 public class Instructions extends AppCompatActivity {
+
+    private static final int SELECT_BOSS = 0;
 
     private int id;
     private Intent intent;
@@ -76,7 +79,7 @@ public class Instructions extends AppCompatActivity {
         switch (id) {
             case 0:
                 intent = new Intent(view.getContext(), BossActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, SELECT_BOSS);
                 break;
             case 1:
                 intent = new Intent(view.getContext(), GoalActivity.class);
@@ -89,5 +92,12 @@ public class Instructions extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == SELECT_BOSS && resultCode == Activity.RESULT_OK) {
+            setResult(Activity.RESULT_OK);
+            finish();
+        }
+    }
 
 }
