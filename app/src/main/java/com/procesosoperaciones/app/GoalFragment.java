@@ -30,7 +30,7 @@ public class GoalFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.goal_fragment, container, false);
         goalList = (ListView) root.findViewById(R.id.goal_list);
         goalAdapter = new GoalAdapter(getActivity(), GoalRepository.getInstance().getGoals());
@@ -41,7 +41,8 @@ public class GoalFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 current = goalAdapter.getItem(position);
-                Intent intent = new Intent(getContext(), FormActivity.class);
+                Intent intent = new Intent(getActivity(), FormActivity.class);
+                intent.putExtra("goal", current);
                 startActivity(intent);
             }
         });
