@@ -1,5 +1,6 @@
 package com.procesosoperaciones.app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,8 @@ public class GoalFragment extends Fragment {
     private Goal current;
     private ListView goalList;
     private GoalAdapter goalAdapter;
+
+    private final int GOAL_RESULT = 1;
 
     public GoalFragment() {}
 
@@ -43,7 +46,7 @@ public class GoalFragment extends Fragment {
                 current = goalAdapter.getItem(position);
                 Intent intent = new Intent(getActivity(), FormActivity.class);
                 intent.putExtra("goal", current);
-                startActivity(intent);
+                startActivityForResult(intent, GOAL_RESULT);
             }
         });
 
@@ -67,4 +70,15 @@ public class GoalFragment extends Fragment {
         goalAdapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == GOAL_RESULT){
+            if(resultCode == Activity.RESULT_OK){
+                current = (Goal) data.getSerializableExtra("goal");
+                Toast.makeText(getContext(), current.getPerspective(), Toast.LENGTH_LONG).show();
+            }
+        }else{
+
+        }
+    }
 }

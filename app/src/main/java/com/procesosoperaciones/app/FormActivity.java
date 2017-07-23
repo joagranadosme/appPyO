@@ -1,5 +1,6 @@
 package com.procesosoperaciones.app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
@@ -167,31 +168,52 @@ public class FormActivity extends AppCompatActivity {
         boolean flag = true;
 
         String perspective = perspectiveSpinner.getSelectedItem().toString();
+        goal.setPerspective(perspective);
+
         String strategic = strategicSpinner.getSelectedItem().toString();
+        goal.setStrategicGoal(strategic);
+
         String indicator = indicatorSpinner.getSelectedItem().toString();
+        goal.setIndicator(indicator);
+
         String front = frontSpinner.getSelectedItem().toString();
+        goal.setManagementFront(front);
+
         String type = typeSpinner.getSelectedItem().toString();
+        goal.setType(type);
 
         String responsability = responsabilityEditText.getText().toString();
         if(responsability.equals("")){
             flag = false;
             Toast.makeText(view.getContext(), "¡La responsabilidad de tu objetivo no puede estar vacía!", Toast.LENGTH_LONG).show();
+        }else{
+            goal.setResponsibility(responsability);
         }
 
         String redaction = redactionEditText.getText().toString();
         if(redaction.equals("")){
             flag = false;
             Toast.makeText(view.getContext(), "¡La descripción de tu objetivo no puede estar vacía!", Toast.LENGTH_LONG).show();
+        }else{
+            goal.setRedaction(redaction);
         }
 
         boolean measure = measureYes.isChecked();
+        goal.setMeasure(measure);
+
         boolean management = managementYes.isChecked();
+        goal.setManagement(management);
+
         boolean unit = unitYes.isChecked();
+        goal.setUnit(unit);
+
         boolean indicatorType = indicatorYes.isChecked();
+        goal.setIndicatorType(indicatorType);
 
         int weight;
         try{
             weight = Integer.parseInt(weightEditText.getText().toString());
+            goal.setWeight(weight);
         }catch (Exception e){
             flag = false;
             Toast.makeText(view.getContext(), "¡Debes asignar un porcentaje a tu objetivo!", Toast.LENGTH_LONG).show();
@@ -201,14 +223,18 @@ public class FormActivity extends AppCompatActivity {
         try {
             for (int i = 0; i < size; i++)
                 goals[i] = Integer.parseInt(goalsEditText[i].getText().toString());
+            goal.setGoalTracing(goals);
         }catch (Exception e){
             flag = false;
             Toast.makeText(view.getContext(), "¡Debes asignar una meta para cada periodo!", Toast.LENGTH_LONG).show();
         }
 
-        Goal rGoal = new Goal();
-        if(flag)
+        if(flag) {
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra("goal", goal);
+            setResult(Activity.RESULT_OK,returnIntent);
             finish();
+        }
     }
 
     public void add(int n, String s){
@@ -270,7 +296,5 @@ public class FormActivity extends AppCompatActivity {
     public void indicatorTypeNoClick(View view){
         indicatorYes.setChecked(false);
     }
-
-
 
 }
