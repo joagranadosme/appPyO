@@ -28,11 +28,11 @@ public class FormActivity extends AppCompatActivity {
     private Goal goal;
 
     private static String[] perspectiveString = {"Financiera", "Interna", "Aprendizaje"};
-    private static String[] strategicString = {"Generar valor a los socios y grupos de interés", "Operar de manera limpia y segura con estandares de excelencia internacional", "Asegurar la integridad de la infraestructura"};
-    private static String[] indicatorString = {"Ejecucion presupuestal Proyecto", "Asegurar la estructura organizacional y de procesos de OBC", "Índice de Frecuencia de Accidentalidad con Pérdida de Tiempo"};
-    private static String[] frontString = {"Frente de gestión que apoya el cumplimiento del objetivo", "Asegurar el fondeo oportuno de recursos", "Promover el proyecto ante mercados nacionales",  "Obtener una adecuada cobertura contra el riesgo cambiario",  "Implementación del Programa Local de Seguros y del Programa de Seguros para el Proyecto", "Contratos con terceros"};
+    private static String[] strategicString = {"Generar valor", "Operar de manera limpia y segura", "Asegurar integridad"};
+    private static String[] indicatorString = {"Ejecucion presupuestal", "Asegurar estructura organizacional", "Índice de Frecuencia"};
+    private static String[] frontString = {"Frente de gestión", "Asegurar el fondeo oportuno de recursos", "Promover el proyecto ante mercados nacionales",  "Obtener una adecuada cobertura",  "Implementación del Programa Local", "Contratos con terceros"};
     private static String[] typeString = {"Individual", "Grupal", "Desarrollo de capacidades"};
-    private static String[] periodString = {"", "Mensual", "Bimestral", "Trimestral", "Semestral", "Anual"};
+    private static String[] periodString = {"Periodo", "Mensual", "Bimestral", "Trimestral", "Semestral", "Anual"};
 
     private Spinner perspectiveSpinner;
     private Spinner strategicSpinner;
@@ -73,9 +73,6 @@ public class FormActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
 
-        Intent intent = getIntent();
-        goal = (Goal) intent.getSerializableExtra("goal");
-
         layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
 
         perspectiveSpinner = (Spinner) findViewById(R.id.perspectiveSpinner);
@@ -109,20 +106,24 @@ public class FormActivity extends AppCompatActivity {
         periodSpinner.setAdapter(periodAdapter);
         periodSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItem  = parent.getItemAtPosition(position).toString();
-                if(selectedItem.equals(periodString[1]))
-                    add(12, "Mes");
-                else if(selectedItem.equals(periodString[2]))
-                    add(6, "Bimestre");
-                else if(selectedItem.equals(periodString[3]))
-                    add(4, "Trimestre");
-                else if(selectedItem.equals(periodString[4]))
-                    add(2, "Semestre");
-                else if(selectedItem.equals(periodString[5]))
-                    add(1, "Año");
-                else
-                    add(1, "Periodo");
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+                if(goal.getGoalTracing() != null){
+                    add(goal.getGoalTracing().length, goal.getPeriod(), goal.getGoalTracing());
+                }else{
+                    String selectedItem = parent.getItemAtPosition(position).toString();
+                    if (selectedItem.equals(periodString[1]))
+                        add(12, "Mes", new int[12]);
+                    else if (selectedItem.equals(periodString[2]))
+                        add(6, "Bimestre", new int[6]);
+                    else if (selectedItem.equals(periodString[3]))
+                        add(4, "Trimestre", new int[4]);
+                    else if (selectedItem.equals(periodString[4]))
+                        add(2, "Semestre", new int[2]);
+                    else if (selectedItem.equals(periodString[5]))
+                        add(1, "Año", new int[1]);
+                    else
+                        add(1, "Periodo", new int[1]);
+                }
             }
 
             @Override
@@ -131,10 +132,13 @@ public class FormActivity extends AppCompatActivity {
 
         measureYes = (RadioButton) findViewById(R.id.measureYesRadio);
         measureNo = (RadioButton) findViewById(R.id.measureNoRadio);
+
         managementYes = (RadioButton) findViewById(R.id.managementYesRadio);
         managementNo = (RadioButton) findViewById(R.id.managementNoRadio);
+
         unitYes = (RadioButton) findViewById(R.id.unitYesRadio);
         unitNo = (RadioButton) findViewById(R.id.unitNoRadio);
+
         indicatorYes = (RadioButton) findViewById(R.id.indicatorTypeYesRadio);
         indicatorNo = (RadioButton) findViewById(R.id.indicatorTypeNoRadio);
 
@@ -143,6 +147,68 @@ public class FormActivity extends AppCompatActivity {
         weightEditText = (EditText) findViewById(R.id.weightNumber);
 
         goalsLinearLayout = (LinearLayout) findViewById(R.id.goalsLinearLayout);
+
+
+        Intent intent = getIntent();
+        goal = (Goal) intent.getSerializableExtra("goal");
+
+        if(!goal.getPerspective().equals(""))
+            perspectiveSpinner.setSelection(perspectiveAdapter.getPosition(goal.getPerspective()));
+
+        if(goal.getStrategicGoal() != null)
+            strategicSpinner.setSelection(strategicAdapter.getPosition(goal.getStrategicGoal()));
+
+        if(goal.getIndicator() != null)
+            indicatorSpinner.setSelection(indicatorAdapter.getPosition(goal.getIndicator()));
+
+        if(goal.getManagementFront() != null)
+            frontSpinner.setSelection(frontAdapter.getPosition(goal.getManagementFront()));
+
+        if(goal.getType() != null)
+            typeSpinner.setSelection(typeAdapter.getPosition(goal.getType()));
+
+        if(goal.getPeriod() != null)
+            periodSpinner.setSelection(periodAdapter.getPosition(goal.getPeriod()));
+
+        if(goal.isMeasure()){
+            measureYes.setChecked(true);
+            measureNo.setChecked(false);
+        }else {
+            measureYes.setChecked(false);
+            measureNo.setChecked(true);
+        }
+
+        if(goal.isManagement()){
+            managementYes.setChecked(true);
+            managementNo.setChecked(false);
+        }else{
+            managementYes.setChecked(false);
+            managementNo.setChecked(true);
+        }
+
+        if(goal.getUnit()){
+            unitYes.setChecked(true);
+            unitNo.setChecked(false);
+        }else{
+            unitYes.setChecked(false);
+            unitNo.setChecked(true);
+        }
+
+        if(goal.isIndicatorType()){
+            indicatorYes.setChecked(true);
+            indicatorNo.setChecked(false);
+        }else{
+            indicatorYes.setChecked(false);
+            indicatorNo.setChecked(true);
+        }
+
+        if(goal.getResponsibility() != null)
+            responsabilityEditText.setText(goal.getResponsibility());
+
+        if(goal.getRedaction() != null)
+            redactionEditText.setText(goal.getRedaction());
+
+        weightEditText.setText(goal.getWeight() + "");
     }
 
     @Override
@@ -181,6 +247,9 @@ public class FormActivity extends AppCompatActivity {
 
         String type = typeSpinner.getSelectedItem().toString();
         goal.setType(type);
+
+        String period = periodSpinner.getSelectedItem().toString();
+        goal.setPeriod(period);
 
         String responsability = responsabilityEditText.getText().toString();
         if(responsability.equals("")){
@@ -221,7 +290,7 @@ public class FormActivity extends AppCompatActivity {
 
         int[] goals = new int[size];
         try {
-            for (int i = 0; i < size; i++)
+            for(int i=0; i<size; i++)
                 goals[i] = Integer.parseInt(goalsEditText[i].getText().toString());
             goal.setGoalTracing(goals);
         }catch (Exception e){
@@ -237,7 +306,7 @@ public class FormActivity extends AppCompatActivity {
         }
     }
 
-    public void add(int n, String s){
+    public void add(int n, String s, int[] g){
         size = n;
         goalsLinearLayout.removeAllViews();
 
@@ -257,6 +326,7 @@ public class FormActivity extends AppCompatActivity {
             goalLinearLayout[i].addView(goalsTextView[i]);
 
             goalsEditText[i] = new EditText(this);
+            goalsEditText[i].setText(g[i] + "");
             goalsEditText[i].setInputType(InputType.TYPE_CLASS_NUMBER);
             goalsEditText[i].setLayoutParams(layoutParams);
             goalLinearLayout[i].addView(goalsEditText[i]);

@@ -10,20 +10,21 @@ import java.util.UUID;
 public class Goal implements Serializable {
 
     private String id;
-    private String perspective;
-    private String strategicGoal;
-    private String indicator;
-    private String managementFront;
-    private String type;
-    private String responsibility;
-    private String redaction;
-    private boolean measure;
-    private boolean management;
-    private int weight;
-    private boolean unit;
-    private boolean indicatorType;
-    private String formula;
-    private int[] goalTracing;
+    private String perspective = null;
+    private String strategicGoal = null;
+    private String indicator = null;
+    private String managementFront = null;
+    private String type = null;
+    private String responsibility = null;
+    private String redaction = null;
+    private boolean measure = true;
+    private boolean management = true;
+    private int weight = -1;
+    private boolean unit = true;
+    private boolean indicatorType = true;
+    private String formula = null;
+    private String period = null;
+    private int[] goalTracing = null;
 
     public Goal() {
         this.id = UUID.randomUUID().toString();
@@ -165,6 +166,14 @@ public class Goal implements Serializable {
 
     public void setFormula(String formula) {
         this.formula = formula;
+    }
+
+    public String getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(String period) {
+        this.period = period;
     }
 
     public int[] getGoalTracing() {

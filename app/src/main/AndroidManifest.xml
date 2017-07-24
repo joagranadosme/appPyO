@@ -14,7 +14,6 @@
             android:label="PyO app">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -30,7 +29,9 @@
         <activity
             android:name=".GoalActivity"
             android:label="Crea tus objetivos"></activity>
-        <activity android:name=".FormActivity"></activity>
+        <activity
+            android:name=".FormActivity"
+            android:label="Objetivo"></activity>
     </application>
 
 </manifest>

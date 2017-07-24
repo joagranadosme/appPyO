@@ -74,11 +74,11 @@ public class GoalFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == GOAL_RESULT){
             if(resultCode == Activity.RESULT_OK){
+                goalAdapter.remove(current);
                 current = (Goal) data.getSerializableExtra("goal");
-                Toast.makeText(getContext(), current.getPerspective(), Toast.LENGTH_LONG).show();
+                goalAdapter.add(current);
             }
-        }else{
-
         }
     }
+
 }
