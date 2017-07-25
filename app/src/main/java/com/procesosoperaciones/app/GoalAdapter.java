@@ -27,6 +27,7 @@ public class GoalAdapter extends ArrayAdapter<Goal> {
             convertView = inflater.inflate(R.layout.list_item_goal, parent, false);
             holder = new ViewHolder();
             holder.perspective = (TextView) convertView.findViewById(R.id.perspective);
+            holder.strategic = (TextView) convertView.findViewById(R.id.strategic);
             holder.weight = (TextView) convertView.findViewById(R.id.weight);
             convertView.setTag(holder);
         }else{
@@ -35,14 +36,16 @@ public class GoalAdapter extends ArrayAdapter<Goal> {
 
         Goal goal = getItem(position);
 
-        holder.weight.setText(goal.getWeight() + "%");
         holder.perspective.setText(goal.getPerspective());
+        holder.strategic.setText(goal.getStrategicGoal());
+        holder.weight.setText(goal.getWeight() + "%");
 
         return convertView;
     }
 
     static class ViewHolder{
         TextView perspective;
+        TextView strategic;
         TextView weight;
     }
 

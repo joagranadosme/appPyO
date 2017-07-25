@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PyO app</string>
 
-    <string name="general_instructions_text">Bienvenido al Sistema de Gestión de Desempeño.
+    <string name="general_instructions_text"><b>Bienvenido al Sistema de Gestión de Desempeño.</b>
     \n\nLa presente herramienta, le permitirá desarrollar cada una de las fases y componentes del Sistema de Gestión de Desempeño que nuestra app coloca a su disposición.
     \n\nEl proceso se desarrollará de una manera secuencial, con el fin de que usted vaya revisando la evolución de su gestión a lo largo del tiempo que dure el ciclo de gestión de desempeño.
     \n\nTenga en cuenta las siguientes recomendaciones:
@@ -14,13 +14,13 @@
     \n\n\n
     </string>
 
-    <string name="instruction_0">Apreciado Colaborador.
+    <string name="instruction_0"><b>Apreciado Colaborador.</b>
     \n\nA continuación encontrará una lista desplegable de los funcionarios de la empresa que pueden evaluar a otros a su cargo dentro del proceso del Sistema de Gestión de Desempeño.
     \n\nPor favor tenga en cuenta que la persona que usted seleccione, esté permanentemente direccionando su trabajo, retroalimentándolo y apoyándolo en la solución de problemas u obstaculos que se le puedan presentar dentro del desarrollo diario de sus actividades que lo estan conduciendo al logro de los retos que usted ha definido y validará con la persona que seleccionará a continuación.
     \n\n\n\n\n
     </string>
 
-    <string name="instruction_1">Apreciado Colaborador.
+    <string name="instruction_1"><b>Apreciado Colaborador.</b>
     \n\nBienvenido(a) a la Fase 2 del Sistema de Gestión de Desempeño denominada FASE DE FIJACIÓN DE OBJETIVOS.
     \n\nPara desarrollar esta Fase, además de haber asistido a los talleres de la metodología del Sistema de gestión de Desempeño, usted deberá tener la siguiente información disponible:
     \n\n\t<b>1)</b> La Descripción de su cargo.
@@ -34,7 +34,7 @@
     \n\n\n\n\n
     </string>
 
-    <string name="instruction_2">Apreciado Colaborador.
+    <string name="instruction_2"><b>Apreciado Colaborador.</b>
     \n\nBienvenido(a) a la Fase 3 del Sistema de Gestión de Desempeño denominada SEGUIMIENTO DE OBJETIVOS.
     \n\nEn esta fase usted se deberá reunir con su jefe inmediato, para realizar una REUNION DE SEGUIMIENTO FORMAL, a la fecha de corte definido por VENUS COLOMBIANA S.A, para determinar el grado de avance de los objetivos acordados en la Fase 2. Asi mismo revisarán las evidencias de los Planes de Mejoramiento definidos para las competencias sobre las cuales se haya decidido trabajar a lo largo del año.
     \n\nPara desarrollar esta Fase, usted deberá tener la siguiente información disponible:
@@ -51,24 +51,7 @@
     \n\n\n\n\n
     </string>
 
-    <string name="instruction_3">Apreciado Colaborador.
-    \n\nBienvenido(a) a la Fase 3 del Sistema de Gestión de Desempeño denominada SEGUIMIENTO DE OBJETIVOS.
-    \n\nEn esta fase usted se deberá reunir con su jefe inmediato, para realizar una REUNION DE SEGUIMIENTO FORMAL, a la fecha de corte definido por VENUS COLOMBIANA S.A, para determinar el grado de avance de los objetivos acordados en la Fase 2. Asi mismo revisarán las evidencias de los Planes de Mejoramiento definidos para las competencias sobre las cuales se haya decidido trabajar a lo largo del año.
-    \n\nPara desarrollar esta Fase, usted deberá tener la siguiente información disponible:
-    \n\n\t<b>1)</b> Cálculo de ejecución a la fecha de corte de cada uno de los objetivos definidos previamente en la Fase 2 - Fijación de Objetivos.
-    \n\n\t<b>1)</b> Evidencias del desarrollo de las competencias.
-    \n\nCon base en esta información, por favor haga lo siguiente en el formato definido:
-    \n\n\t<b>1)</b> Incluya el valor de la ejecución en la columna correspondiente en cada objetivo.
-    \n\n\t<b>2)</b> La Herramienta le calculará el cumplimiento para cada objetivo forma automática. De acuerdo con la formula correspondiente al tipo de indicador seleccionado.
-    \n\n\t<b>3)</b> En caso que el cumplimiento calculado, sea menor a 80% (semaforizado en rojo), por favor digite un plan de mejoramiento para el objetivo que corresponda.
-    \n\n\t<b>4)</b> Posteriormente revise los planes de mejoramiento definidos para las competencias que usted y su jefe inmediato hayan considerado desarrollar.
-    \n\n\t<b>5)</b> Guarde el formato en su PC y envíeselo a su jefe inmediato.
-    \n\n\t<b>6)</b> Reúnase y revise con su jefe inmediato, la información aquí consignada, para recibir retroalimentación sobre los resultados finales obtenidos.
-    \n\n\t<b>7)</b> Por favor imprima y fírme el formato, hagalo firmar de su jefe y envíelo al area de Recursos Humanos.
-    \n\n\n\n\n
-    </string>
-
-    <string name="instruction_4">Apreciado Colaborador.
+    <string name="instruction_3"><b>Apreciado Colaborador.</b>
     \n\nBienvenido(a) a la Fase 4 del Sistema de Gestión de Desempeño denominada EVALUACION FINAL DE OBJETIVOS.
     \n\nEn esta fase usted se deberá reunir con su jefe inmediato, para realizar una la EVALUACION FORMAL DE GESTION DE DESEMPEÑO, CORRESPONDIENTE AL AÑO 2011, en la cual se debe establecer el resultado final de ejecución de los objetivos acordados en la Fase 2. Asi mismo revisarán las evidencias faltantes de los Planes de Mejoramiento definidos para las competencias sobre las cuales se haya decidido trabajar a lo largo del año.
     \n\nPara desarrollar esta Fase, usted deberá tener la siguiente información disponible:

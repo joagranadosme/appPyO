@@ -1,7 +1,9 @@
 package com.procesosoperaciones.app;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,11 +45,22 @@ public class GoalActivity extends AppCompatActivity {
     }
 
     public void sendClick(View view){
-        goalFragment.sendClick(view);
+        if(goalFragment.sendClick()){
+            try {
+                FileManager.writeGoal(goalFragment.getGoals(), view.getContext());
+            }catch (Exception e ){
+                Toast.makeText(view.getContext(), e.toString(), Toast.LENGTH_LONG).show();
+                Log.e("Goal", e.toString());
+            }
+            setResult(Activity.RESULT_OK);
+            finish();
+        }else{
+            Toast.makeText(view.getContext(), "¡La suma de tus objetivos debe ser igual a 100%!", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void addClick(View view){
-        goalFragment.addClick(view);
+        goalFragment.addClick();
     }
 
 }

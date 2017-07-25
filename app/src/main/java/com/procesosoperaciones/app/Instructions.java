@@ -16,10 +16,12 @@ import com.bluejamesbond.text.DocumentView;
 public class Instructions extends AppCompatActivity {
 
     private static final int SELECT_BOSS = 0;
+    private static final int CREATE_GOAL = 1;
+    private static final int TRACING = 2;
 
     private int id;
     private Intent intent;
-    private String[] titles = {"Seleccionar jefe directo", "Fijar objetivos", "Evaluar competencias", "Seguimiento", "Evaluación"};
+    private String[] titles = {"Seleccionar jefe directo", "Fijar objetivos", "Seguimiento", "Evaluación"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,14 +49,9 @@ public class Instructions extends AppCompatActivity {
             case 3:
                 content.setText(getResources().getText(R.string.instruction_3));
                 break;
-            case 4:
-                content.setText(getResources().getText(R.string.instruction_4));
-                break;
             default:
-
                 break;
         }
-
     }
 
     @Override
@@ -83,7 +80,11 @@ public class Instructions extends AppCompatActivity {
                 break;
             case 1:
                 intent = new Intent(view.getContext(), GoalActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, CREATE_GOAL);
+                break;
+            case 2:
+                intent = new Intent(view.getContext(), TracingActivity.class);
+                startActivityForResult(intent, TRACING);
                 break;
             default:
                 Toast.makeText(view.getContext(), "Not supported yet.", Toast.LENGTH_SHORT).show();
@@ -95,6 +96,10 @@ public class Instructions extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == SELECT_BOSS && resultCode == Activity.RESULT_OK) {
+            setResult(Activity.RESULT_OK);
+            finish();
+        }
+        if (requestCode == CREATE_GOAL && resultCode == Activity.RESULT_OK) {
             setResult(Activity.RESULT_OK);
             finish();
         }

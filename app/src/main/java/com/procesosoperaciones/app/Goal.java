@@ -1,5 +1,11 @@
 package com.procesosoperaciones.app;
 
+import android.os.Build;
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -25,20 +31,23 @@ public class Goal implements Serializable {
     private String formula = null;
     private String period = null;
     private int[] goalTracing = null;
+    private int[] goalEvaluated = null;
 
     public Goal() {
         this.id = UUID.randomUUID().toString();
         this.perspective = "Nuevo objetivo";
+        this.strategicGoal = "Objetivo estratégico";
         this.weight = 0;
     }
 
-    public Goal(String perspective, int weight){
+    public Goal(String perspective, int weight, String strategicGoal){
         this.id = UUID.randomUUID().toString();
         this.perspective = perspective;
         this.weight = weight;
+        this.strategicGoal = strategicGoal;
     }
 
-    public Goal(String perspective, String strategicGoal, String indicator, String managementFront, String type, String responsibility, String redaction, boolean measure, boolean management, int weight, boolean unit, boolean indicatorType, String formula, int[] goalTracing) {
+    public Goal(String perspective, String strategicGoal, String indicator, String managementFront, String type, String responsibility, String redaction, boolean measure, boolean management, int weight, boolean unit, boolean indicatorType, String formula, int[] goalTracing, int[] goalEvaluated) {
         this.id = UUID.randomUUID().toString();
         this.perspective = perspective;
         this.strategicGoal = strategicGoal;
@@ -54,6 +63,26 @@ public class Goal implements Serializable {
         this.indicatorType = indicatorType;
         this.formula = formula;
         this.goalTracing = goalTracing;
+        this.goalEvaluated = goalEvaluated;
+    }
+
+    public Goal(String id, String perspective, String strategicGoal, String indicator, String managementFront, String type, String responsibility, String redaction, boolean measure, boolean management, int weight, boolean unit, boolean indicatorType, String formula, int[] goalTracing, int[] goalEvaluated) {
+        this.id = id;
+        this.perspective = perspective;
+        this.strategicGoal = strategicGoal;
+        this.indicator = indicator;
+        this.managementFront = managementFront;
+        this.type = type;
+        this.responsibility = responsibility;
+        this.redaction = redaction;
+        this.measure = measure;
+        this.management = management;
+        this.weight = weight;
+        this.unit = unit;
+        this.indicatorType = indicatorType;
+        this.formula = formula;
+        this.goalTracing = goalTracing;
+        this.goalEvaluated = goalEvaluated;
     }
 
     public String getId() {
@@ -144,7 +173,7 @@ public class Goal implements Serializable {
         this.weight = weight;
     }
 
-    public boolean getUnit() {
+    public boolean isUnit() {
         return unit;
     }
 
@@ -184,4 +213,48 @@ public class Goal implements Serializable {
         this.goalTracing = goalTracing;
     }
 
+    public String tracing(){
+        String r = "{";
+        for(int i=0; i<goalTracing.length; i++)
+            r += goalTracing[i] + ",";
+        r = r.substring(0, r.length() - 1);
+        r += "}";
+        return r;
+    }
+
+    public int[] getGoalEvaluated() {
+        return goalEvaluated;
+    }
+
+    public void setGoalEvaluated(int[] goalEvaluated) {
+        this.goalEvaluated = goalEvaluated;
+    }
+
+    public JSONObject toJson(){
+        JSONObject obj = new JSONObject();
+
+        try {
+            obj.put("id", getId())
+            .put("perspective", getPerspective())
+            .put("indicator", getIndicator())
+            .put("front", getManagementFront())
+            .put("type", getType())
+            .put("resp", getResponsibility())
+            .put("redaction", getRedaction())
+            .put("measure", isMeasure())
+            .put("management", isManagement())
+            .put("weight", getWeight())
+            .put("unit", isUnit())
+            .put("typeInd", isIndicatorType())
+            .put("goalTracing", tracing());
+        }catch (Exception e){
+            Log.e("Error", e.toString());
+        }
+        return obj;
+    }
+
+    @Override
+    public String toString(){
+        return this.toJson().toString();
+    }
 }

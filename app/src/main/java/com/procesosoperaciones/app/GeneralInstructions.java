@@ -16,6 +16,7 @@ import com.bluejamesbond.text.DocumentView;
 public class GeneralInstructions extends AppCompatActivity {
 
     private static final int SELECT_BOSS = 0;
+    private static final int CREATE_GOAL = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class GeneralInstructions extends AppCompatActivity {
         //Start new activity.
         Intent intent = new Intent(this, Instructions.class);
         intent.putExtra("id", 1);
-        startActivity(intent);
+        startActivityForResult(intent, CREATE_GOAL);
     }
 
     public void tresClick(View view) {
@@ -72,17 +73,13 @@ public class GeneralInstructions extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void cincoClick(View view) {
-        //Start new activity.
-        Intent intent = new Intent(this, Instructions.class);
-        intent.putExtra("id", 4);
-        startActivity(intent);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == SELECT_BOSS && resultCode == Activity.RESULT_OK) {
             Toast.makeText(this, "¡Jefe seleecionado correctamente!", Toast.LENGTH_LONG).show();
+        }
+        if (requestCode == CREATE_GOAL && resultCode == Activity.RESULT_OK) {
+            Toast.makeText(this, "¡Objetivos creados correctamente!", Toast.LENGTH_LONG).show();
         }
     }
 

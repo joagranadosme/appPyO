@@ -109,6 +109,7 @@ public class FormActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
                 if(goal.getGoalTracing() != null){
                     add(goal.getGoalTracing().length, goal.getPeriod(), goal.getGoalTracing());
+                    goal.setGoalTracing(null);
                 }else{
                     String selectedItem = parent.getItemAtPosition(position).toString();
                     if (selectedItem.equals(periodString[1]))
@@ -186,7 +187,7 @@ public class FormActivity extends AppCompatActivity {
             managementNo.setChecked(true);
         }
 
-        if(goal.getUnit()){
+        if(goal.isUnit()){
             unitYes.setChecked(true);
             unitNo.setChecked(false);
         }else{

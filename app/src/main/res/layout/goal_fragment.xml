@@ -10,13 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null"
+        android:dividerHeight="2dp"
         android:drawSelectorOnTop="true"
         android:longClickable="false"
         tools:listitem="@layout/list_item_goal" />
 
     <TextView
         android:id="@+id/weightText"
-        android:layout_width="60dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|left"
         android:layout_margin="20dp"
