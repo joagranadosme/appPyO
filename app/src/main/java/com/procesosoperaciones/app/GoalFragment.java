@@ -65,7 +65,6 @@ public class GoalFragment extends Fragment {
             }
         });
 
-        //weightTextView.setText(getTotalWeight() + "%");
         return root;
     }
 
@@ -99,7 +98,6 @@ public class GoalFragment extends Fragment {
                 goalAdapter.remove(current);
                 current = (Goal) data.getSerializableExtra("goal");
                 goalAdapter.add(current);
-                //weightTextView.setText(getTotalWeight() + "%");
             }
         }
     }
