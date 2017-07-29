@@ -6,16 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.procesosoperaciones.app.GoalActivity">
 
-    <LinearLayout
+    <include
+        layout="@layout/content_goal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_weight="1" />
 
-        <include
-            layout="@layout/content_goal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1" />
-
-    </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

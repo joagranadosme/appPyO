@@ -1,12 +1,13 @@
 package com.procesosoperaciones.app;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
  * Created by Jonathan on 7/13/2017.
  */
 
-public class Boss {
+public class Boss implements Serializable {
 
     private String id;
     private String name;

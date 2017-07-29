@@ -50,7 +50,11 @@ public class BossActivity extends AppCompatActivity {
         if(boss == null){
             Toast.makeText(view.getContext(), "¡Selecciona tu jefe!", Toast.LENGTH_LONG).show();
         }else {
-            //TODO: Save boss.
+            try{
+                FileManager.writeBoss(boss, view.getContext());
+            }catch (Exception e){
+                Toast.makeText(view.getContext(), "¡Error guardando jefe!", Toast.LENGTH_LONG).show();
+            }
             setResult(Activity.RESULT_OK);
             finish();
         }

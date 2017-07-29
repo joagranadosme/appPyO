@@ -213,15 +213,6 @@ public class Goal implements Serializable {
         this.goalTracing = goalTracing;
     }
 
-    public String tracing(){
-        String r = "{";
-        for(int i=0; i<goalTracing.length; i++)
-            r += goalTracing[i] + ",";
-        r = r.substring(0, r.length() - 1);
-        r += "}";
-        return r;
-    }
-
     public int[] getGoalEvaluated() {
         return goalEvaluated;
     }
@@ -245,8 +236,7 @@ public class Goal implements Serializable {
             .put("management", isManagement())
             .put("weight", getWeight())
             .put("unit", isUnit())
-            .put("typeInd", isIndicatorType())
-            .put("goalTracing", tracing());
+            .put("typeInd", isIndicatorType());
         }catch (Exception e){
             Log.e("Error", e.toString());
         }

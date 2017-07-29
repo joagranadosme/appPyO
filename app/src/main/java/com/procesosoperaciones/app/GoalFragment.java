@@ -35,7 +35,7 @@ public class GoalFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
         View root = inflater.inflate(R.layout.goal_fragment, container, false);
 

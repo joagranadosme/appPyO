@@ -1,7 +1,6 @@
 package com.procesosoperaciones.app;
 
 import android.content.Context;
-import android.os.Environment;
 import android.widget.Toast;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,7 +15,9 @@ import java.io.ObjectOutputStream;
 
 public class FileManager {
 
-    private String fileName = "data.txt";
+    private static final String APP_PATH_SD_CARD = "/com.pyoapp/data/";
+    private static final String fileGoals = "goals.txt";
+    private static final String fileBoss = "boss.txt";
 
     public static void fail(Context context, String s){
         Toast.makeText(context, s, Toast.LENGTH_LONG).show();
@@ -24,22 +25,14 @@ public class FileManager {
 
     public static void writeGoal(Goal[] goals, Context context) throws IOException{
 
-        File sdcard = Environment.getExternalStorageDirectory();
-
-        if( sdcard == null || !sdcard.isDirectory()) {
-            fail(context, "sdcard not available");
+        String fullPath = context.getFilesDir() + APP_PATH_SD_CARD;
+        File dir = new File(fullPath);
+        if(!dir.exists()){
+            dir.mkdirs();
         }
 
-        File datadir = new File(sdcard, "com/pyoapp/test/");
-
-        if( !datadir.exists() && !datadir.mkdirs() ) {
-            fail(context, "unable to create data directory");
-        }
-        if( !datadir.isDirectory() ) {
-            fail(context, "exists, but is not a directory");
-        }
-
-        File data = new File(datadir, "data.txt");
+        File data = new File(dir + File.separator + fileGoals);
+        data.createNewFile();
         FileOutputStream fos = new FileOutputStream(data);
         ObjectOutputStream os = new ObjectOutputStream(fos);
 
@@ -53,19 +46,40 @@ public class FileManager {
 
     }
 
+    public static void writeBoss(Boss boss, Context context) throws IOException{
+
+        String fullPath = context.getFilesDir() + APP_PATH_SD_CARD;
+        File dir = new File(fullPath);
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
+
+        File data = new File(dir + File.separator + fileBoss);
+        data.createNewFile();
+
+        FileOutputStream fos = new FileOutputStream(data);
+        ObjectOutputStream os = new ObjectOutputStream(fos);
+
+        os.writeObject(boss);
+
+        os.close();
+        fos.close();
+
+        fail(context, dir.toString());
+
+    }
+
     public static Goal[] readGoal(Context context) throws IOException, ClassNotFoundException {
 
-        File sdcard = Environment.getExternalStorageDirectory();
-        if( sdcard == null || !sdcard.isDirectory())
-            fail(context, "sdcard not available");
+        String fullPath = context.getFilesDir() + APP_PATH_SD_CARD;
+        File dir = new File(fullPath);
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
 
-        File datadir = new File(sdcard, "com/pyoapp/test/");
-        if( !datadir.exists() && !datadir.mkdirs() )
-            fail(context, "unable to create data directory");
-        if( !datadir.isDirectory() )
-            fail(context, "exists, but is not a directory");
+        File data = new File(dir + File.separator + fileGoals);
+        data.createNewFile();
 
-        File data = new File(datadir, "data.txt");
         FileInputStream fis = new FileInputStream(data);
         ObjectInputStream is = new ObjectInputStream(fis);
 
@@ -79,6 +93,30 @@ public class FileManager {
         fis.close();
 
         return goals;
+
+    }
+
+    public static Boss readBoss(Context context) throws  IOException, ClassNotFoundException {
+
+        String fullPath = context.getFilesDir() + APP_PATH_SD_CARD;
+        File dir = new File(fullPath);
+        if(!dir.exists()){
+            dir.mkdirs();
+        }
+
+        File data = new File(dir + File.separator + fileBoss);
+        data.createNewFile();
+
+        FileInputStream fis = new FileInputStream(data);
+        ObjectInputStream is = new ObjectInputStream(fis);
+
+        Boss boss = (Boss) is.readObject();
+
+        is.close();
+        fis.close();
+
+        return boss;
+
     }
 
 }

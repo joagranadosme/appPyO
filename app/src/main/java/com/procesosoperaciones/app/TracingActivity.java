@@ -5,23 +5,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 public class TracingActivity extends AppCompatActivity {
 
-    private Goal[] goals;
+    private TracingFragment tracingFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tracing);
 
-        try {
-            goals = FileManager.readGoal(this);
-            Toast.makeText(this, goals[0].toString(), Toast.LENGTH_LONG).show();
-        }catch (Exception e){
-            Toast.makeText(this, "No loaded", Toast.LENGTH_LONG).show();
-            Log.e("Tracing", e.toString());
+        tracingFragment = (TracingFragment) getSupportFragmentManager().findFragmentById(R.id.tracing_container);
+
+        if(tracingFragment == null){
+            tracingFragment = TracingFragment.newInstance();
+            getSupportFragmentManager().beginTransaction().add(R.id.tracing_container, tracingFragment).commit();
         }
     }
 
@@ -41,6 +41,10 @@ public class TracingActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void sendClick(View view){
+        Toast.makeText(view.getContext(), "Not supported", Toast.LENGTH_LONG).show();
     }
 
 }
