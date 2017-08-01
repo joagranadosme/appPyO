@@ -23,23 +23,27 @@
         </activity>
         <activity
             android:name=".GeneralInstructions"
-            android:label="Instrucciones generales"></activity>
+            android:label="Instrucciones generales" />
         <activity
             android:name=".Instructions"
-            android:label="..."></activity>
+            android:label="..." />
         <activity
             android:name=".BossActivity"
-            android:label="Selecciona tu jefe"></activity>
+            android:label="Selecciona tu jefe" />
         <activity
             android:name=".GoalActivity"
-            android:label="Crea tus objetivos"></activity>
+            android:label="Crea tus objetivos" />
         <activity
             android:name=".FormActivity"
             android:label="Objetivo">
         </activity>
         <activity
             android:name=".TracingActivity"
-            android:label="Seguimiento de tus objetivos">
+            android:label="Seguimiento de Objetivos">
+        </activity>
+        <activity
+            android:name=".TracingDetailActivity"
+            android:label="Detalle de mi Objetivo">
         </activity>
     </application>
 

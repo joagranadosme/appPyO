@@ -69,7 +69,9 @@
     \n\n\n\n\n
     </string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="perspective"><b>Perspectiva: </b></string>
+
+    <string name="strategicGoal"><b>Objetivo estratégico: </b></string>
+
 
 </resources>

@@ -45,9 +45,9 @@ public class TracingFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 current = tracingAdapter.getItem(position);
-                //Intent intent = new Intent(getActivity(), FormActivity.class);
-                //intent.putExtra("goal", current);
-                //startActivityForResult(intent, GOAL_RESULT);
+                Intent intent = new Intent(getActivity(), TracingDetailActivity.class);
+                intent.putExtra("goal", current);
+                startActivityForResult(intent, GOAL_RESULT);
             }
         });
 
