@@ -56,23 +56,21 @@ public class TracingAdapter extends ArrayAdapter<Goal> {
         Goal goal = getItem(position);
         calendar = Calendar.getInstance();
         int month = calendar.get(Calendar.MONTH);
-        int i = getPeriod(goal.getGoalTracing().length, month);
-        int c = (int) (Math.random() * 100);
-
-        Toast.makeText(convertView.getContext(), i + " " + month, Toast.LENGTH_LONG).show();
+        int period = getPeriod(goal.getGoalTracing().length, month);
+        int score = (int) (Math.random() * 100);
 
         holder.perspective.setText(goal.getPerspective());
         holder.strategic.setText(goal.getStrategicGoal());
-        holder.period.setText(map.get(goal.getGoalTracing().length) + (i+1));
-        holder.score.setText(c + "%");
+        holder.period.setText(map.get(goal.getGoalTracing().length) + (period+1));
+        holder.score.setText(score + "%");
 
-        if(c < 60){
+        if(score < 60){
             holder.grade.setText("Malo");
             holder.grade.setBackgroundColor(Color.RED);
-        }else if(c < 80) {
+        }else if(score < 80) {
             holder.grade.setText("Aceptable");
             holder.grade.setBackgroundColor(Color.YELLOW);
-        }else if(c < 100) {
+        }else if(score < 100) {
             holder.grade.setText("Bueno");
             holder.grade.setBackgroundColor(Color.GREEN);
         }else {

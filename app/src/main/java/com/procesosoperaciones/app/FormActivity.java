@@ -294,6 +294,7 @@ public class FormActivity extends AppCompatActivity {
             for(int i=0; i<size; i++)
                 goals[i] = Integer.parseInt(goalsEditText[i].getText().toString());
             goal.setGoalTracing(goals);
+            goal.setGoalEvaluated(new int[size]);
         }catch (Exception e){
             flag = false;
             Toast.makeText(view.getContext(), "¡Debes asignar una meta para cada periodo!", Toast.LENGTH_LONG).show();
