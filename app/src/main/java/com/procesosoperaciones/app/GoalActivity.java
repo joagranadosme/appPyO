@@ -49,7 +49,6 @@ public class GoalActivity extends AppCompatActivity {
             try {
                 FileManager.writeGoal(goalFragment.getGoals(), view.getContext());
             }catch (Exception e ){
-                Toast.makeText(view.getContext(), e.toString(), Toast.LENGTH_LONG).show();
                 Log.e("Goal", e.toString());
             }
             setResult(Activity.RESULT_OK);

@@ -17,6 +17,7 @@ public class GeneralInstructions extends AppCompatActivity {
 
     private static final int SELECT_BOSS = 0;
     private static final int CREATE_GOAL = 1;
+    private static final int TRACING = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,9 @@ public class GeneralInstructions extends AppCompatActivity {
         }
         if (requestCode == CREATE_GOAL && resultCode == Activity.RESULT_OK) {
             Toast.makeText(this, "¡Objetivos creados correctamente!", Toast.LENGTH_LONG).show();
+        }
+        if (requestCode == TRACING && resultCode == Activity.RESULT_OK) {
+            Toast.makeText(this, "¡Seguimiento realizado correctamente!", Toast.LENGTH_LONG).show();
         }
     }
 

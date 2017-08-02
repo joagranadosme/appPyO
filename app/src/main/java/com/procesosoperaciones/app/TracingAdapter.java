@@ -57,7 +57,7 @@ public class TracingAdapter extends ArrayAdapter<Goal> {
         calendar = Calendar.getInstance();
         int month = calendar.get(Calendar.MONTH);
         int period = getPeriod(goal.getGoalTracing().length, month);
-        int score = (int) (Math.random() * 100);
+        int score = (int)((goal.getGoalEvaluated()[period] / goal.getGoalTracing()[period]) * 100);
 
         holder.perspective.setText(goal.getPerspective());
         holder.strategic.setText(goal.getStrategicGoal());

@@ -32,6 +32,7 @@ public class Goal implements Serializable {
     private String period = null;
     private int[] goalTracing = null;
     private int[] goalEvaluated = null;
+    private String improvement = null;
 
     public Goal() {
         this.id = UUID.randomUUID().toString();
@@ -219,6 +220,14 @@ public class Goal implements Serializable {
 
     public void setGoalEvaluated(int[] goalEvaluated) {
         this.goalEvaluated = goalEvaluated;
+    }
+
+    public String getImprovement() {
+        return improvement;
+    }
+
+    public void setImprovement(String improvement) {
+        this.improvement = improvement;
     }
 
     public JSONObject toJson(){

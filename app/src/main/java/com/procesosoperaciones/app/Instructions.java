@@ -103,6 +103,11 @@ public class Instructions extends AppCompatActivity {
             setResult(Activity.RESULT_OK);
             finish();
         }
+        if (requestCode == TRACING && resultCode == Activity.RESULT_OK) {
+            setResult(Activity.RESULT_OK);
+            finish();
+        }
+
     }
 
 }

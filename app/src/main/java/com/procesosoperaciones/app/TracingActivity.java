@@ -1,5 +1,7 @@
 package com.procesosoperaciones.app;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,9 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.File;
+
 public class TracingActivity extends AppCompatActivity {
 
     private TracingFragment tracingFragment;
+
+    private static final int TRACING = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +50,18 @@ public class TracingActivity extends AppCompatActivity {
     }
 
     public void sendClick(View view){
-        Toast.makeText(view.getContext(), "Not supported", Toast.LENGTH_LONG).show();
+        if(tracingFragment.isReady()){
+            try {
+                FileManager.writeGoal(tracingFragment.getGoals(), view.getContext());
+            }catch (Exception e){
+                Log.e("Writting:", e.toString());
+            }
+            setResult(Activity.RESULT_OK);
+            finish();
+        }else {
+            Toast.makeText(view.getContext(), "¡Todos los objetivos deben tener plan de mejoramiento!", Toast.LENGTH_LONG).show();
+        }
     }
+
 
 }

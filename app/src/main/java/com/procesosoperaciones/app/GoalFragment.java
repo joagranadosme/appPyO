@@ -93,12 +93,10 @@ public class GoalFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == GOAL_RESULT){
-            if(resultCode == Activity.RESULT_OK){
+        if(requestCode == GOAL_RESULT && resultCode == Activity.RESULT_OK){
                 goalAdapter.remove(current);
                 current = (Goal) data.getSerializableExtra("goal");
                 goalAdapter.add(current);
-            }
         }
     }
 

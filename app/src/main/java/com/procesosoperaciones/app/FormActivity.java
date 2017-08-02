@@ -290,11 +290,14 @@ public class FormActivity extends AppCompatActivity {
         }
 
         int[] goals = new int[size];
+        int[] evaluated = new int[size];
         try {
-            for(int i=0; i<size; i++)
+            for(int i=0; i<size; i++) {
                 goals[i] = Integer.parseInt(goalsEditText[i].getText().toString());
+                evaluated[i] = (int)(Math.random() * 100);
+            }
             goal.setGoalTracing(goals);
-            goal.setGoalEvaluated(new int[size]);
+            goal.setGoalEvaluated(evaluated);
         }catch (Exception e){
             flag = false;
             Toast.makeText(view.getContext(), "¡Debes asignar una meta para cada periodo!", Toast.LENGTH_LONG).show();
@@ -303,7 +306,7 @@ public class FormActivity extends AppCompatActivity {
         if(flag) {
             Intent returnIntent = new Intent();
             returnIntent.putExtra("goal", goal);
-            setResult(Activity.RESULT_OK,returnIntent);
+            setResult(Activity.RESULT_OK, returnIntent);
             finish();
         }
     }

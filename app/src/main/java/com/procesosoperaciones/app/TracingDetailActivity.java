@@ -1,5 +1,6 @@
 package com.procesosoperaciones.app;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ public class TracingDetailActivity extends AppCompatActivity {
 
     Goal goal;
     int period;
+    EditText improve;
     ArticleBuilder articleBuilder;
     DocumentView generalDocumentView;
     DocumentView commentDocumentView;
@@ -35,9 +38,15 @@ public class TracingDetailActivity extends AppCompatActivity {
         goal = (Goal) intent.getSerializableExtra("goal");
         period = intent.getIntExtra("period", -1);
 
-        int result = (int)(Math.random() * 100);
+        improve = (EditText) findViewById(R.id.improveEditText);
+        if(goal.getImprovement() == null)
+            improve.setText("Escribe aquí tu plan de mejoramiento.");
+        else
+            improve.setText(goal.getImprovement());
+
+        int result = goal.getGoalEvaluated()[period];
         int proposed = goal.getGoalTracing()[period];
-        int total = (result / proposed) * 100;
+        int total = (int)((result / proposed) * 100);
 
         TextView resultText  = (TextView) findViewById(R.id.resultText);
         TextView proposedText = (TextView) findViewById(R.id.proposedText);
@@ -65,8 +74,6 @@ public class TracingDetailActivity extends AppCompatActivity {
         articleBuilder = new ArticleBuilder();
         articleBuilder.append("El trabajador cumple con su trabajo.", true, new RelativeSizeSpan(1.3f), new JustifiedSpan());
         commentDocumentView.setText(articleBuilder);
-
-
     }
 
     @Override
@@ -88,6 +95,15 @@ public class TracingDetailActivity extends AppCompatActivity {
     }
 
     public void sendClick(View view){
+        if(improve.getText().toString().equals(""))
+            Toast.makeText(view.getContext(), "¡El plan de mejoramiento no puede estar vacío!", Toast.LENGTH_LONG).show();
+        else{
+            goal.setImprovement(improve.getText().toString());
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra("goal", goal);
+            setResult(Activity.RESULT_OK, returnIntent);
+            finish();
+        }
 
     }
 
