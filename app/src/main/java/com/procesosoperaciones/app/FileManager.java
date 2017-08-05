@@ -43,7 +43,6 @@ public class FileManager {
 
         os.close();
         fos.close();
-
     }
 
     public static void writeBoss(Boss boss, Context context) throws IOException{
@@ -64,9 +63,6 @@ public class FileManager {
 
         os.close();
         fos.close();
-
-        fail(context, dir.toString());
-
     }
 
     public static Goal[] readGoal(Context context) throws IOException, ClassNotFoundException {
@@ -93,7 +89,6 @@ public class FileManager {
         fis.close();
 
         return goals;
-
     }
 
     public static Boss readBoss(Context context) throws  IOException, ClassNotFoundException {
@@ -116,7 +111,6 @@ public class FileManager {
         fis.close();
 
         return boss;
-
     }
 
 }

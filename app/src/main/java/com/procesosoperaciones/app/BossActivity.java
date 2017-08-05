@@ -1,10 +1,13 @@
 package com.procesosoperaciones.app;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,10 +56,21 @@ public class BossActivity extends AppCompatActivity {
             try{
                 FileManager.writeBoss(boss, view.getContext());
             }catch (Exception e){
-                Toast.makeText(view.getContext(), "¡Error guardando jefe!", Toast.LENGTH_LONG).show();
+                Log.e("BossActivity", "Error writting boss.");
             }
-            setResult(Activity.RESULT_OK);
-            finish();
+            new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Selección de jefe")
+                .setMessage("¿Estás seguro de elegir a " + boss.getName() + " como tu jefe?\n")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        setResult(Activity.RESULT_OK);
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .show();
         }
     }
 

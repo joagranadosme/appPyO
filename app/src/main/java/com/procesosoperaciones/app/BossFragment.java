@@ -42,6 +42,17 @@ public class BossFragment extends Fragment {
                 currentBoss = bossAdapter.getItem(position);
             }
         });
+
+        Boss boss = BossRepository.getBoss(getContext());
+        for(int i=0; i<bossList.getChildCount(); i++){
+            Boss bossI = (Boss) bossList.getItemAtPosition(i);
+            if(bossI.getId().equals(boss.getId())){
+                bossList.setItemChecked(i, true);
+            }else{
+                bossList.setItemChecked(i, false);
+            }
+        }
+
         return root;
     }
 

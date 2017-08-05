@@ -1,5 +1,8 @@
 package com.procesosoperaciones.app;
 
+import android.content.Context;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,11 +13,11 @@ import java.util.List;
 
 public class BossRepository {
 
-    private static BossRepository repository = new BossRepository();
+    private static BossRepository repository;
     private HashMap<String, Boss> bosses = new HashMap<>();
 
     public static BossRepository getInstance(){
-        return repository;
+        return new BossRepository();
     }
 
     private BossRepository(){
@@ -36,6 +39,16 @@ public class BossRepository {
 
     public List<Boss> getBosses(){
         return new ArrayList<>(bosses.values());
+    }
+
+    public static Boss getBoss(Context context){
+        Boss boss = null;
+        try{
+            boss = FileManager.readBoss(context);
+        }catch (Exception e){
+            Log.e("BossRepository", e.toString());
+        }
+        return boss;
     }
 
 }

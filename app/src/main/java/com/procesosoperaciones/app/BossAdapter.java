@@ -18,6 +18,8 @@ import java.util.List;
 
 public class BossAdapter extends ArrayAdapter<Boss>{
 
+    private Boss current;
+
     public BossAdapter(Context context, List<Boss> bosses){
         super(context, 0, bosses);
     }
