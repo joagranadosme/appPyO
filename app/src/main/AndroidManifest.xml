@@ -35,16 +35,15 @@
             android:label="Crea tus objetivos" />
         <activity
             android:name=".FormActivity"
-            android:label="Objetivo">
-        </activity>
+            android:label="Objetivo" />
         <activity
             android:name=".TracingActivity"
-            android:label="Seguimiento de Objetivos">
-        </activity>
+            android:label="Seguimiento de Objetivos" />
         <activity
             android:name=".TracingDetailActivity"
-            android:label="Detalle de mi Objetivo">
-        </activity>
+            android:label="Detalle de mi Objetivo" />
+        <activity android:name=".FinalEvaluationActivity" />
+        <activity android:name=".FinalEvaluationDetail"></activity>
     </application>
 
 </manifest>

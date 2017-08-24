@@ -18,6 +18,7 @@ public class Instructions extends AppCompatActivity {
     private static final int SELECT_BOSS = 0;
     private static final int CREATE_GOAL = 1;
     private static final int TRACING = 2;
+    private static final int FINAL_EVAL = 3;
 
     private int id;
     private Intent intent;
@@ -86,11 +87,14 @@ public class Instructions extends AppCompatActivity {
                 intent = new Intent(view.getContext(), TracingActivity.class);
                 startActivityForResult(intent, TRACING);
                 break;
+            case 3:
+                intent = new Intent(view.getContext(), FinalEvaluationActivity.class);
+                startActivityForResult(intent, FINAL_EVAL);
+                break;
             default:
                 Toast.makeText(view.getContext(), "Not supported yet.", Toast.LENGTH_SHORT).show();
                 break;
         }
-
     }
 
     @Override
@@ -107,7 +111,10 @@ public class Instructions extends AppCompatActivity {
             setResult(Activity.RESULT_OK);
             finish();
         }
-
+        if (requestCode == FINAL_EVAL && resultCode == Activity.RESULT_OK) {
+            setResult(Activity.RESULT_OK);
+            finish();
+        }
     }
 
 }

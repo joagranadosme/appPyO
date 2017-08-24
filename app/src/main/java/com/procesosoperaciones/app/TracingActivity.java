@@ -16,8 +16,6 @@ public class TracingActivity extends AppCompatActivity {
 
     private TracingFragment tracingFragment;
 
-    private static final int TRACING = 1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +60,5 @@ public class TracingActivity extends AppCompatActivity {
             Toast.makeText(view.getContext(), "¡Todos los objetivos deben tener plan de mejoramiento!", Toast.LENGTH_LONG).show();
         }
     }
-
 
 }
